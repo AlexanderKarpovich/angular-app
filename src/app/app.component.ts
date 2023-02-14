@@ -12,6 +12,8 @@ export class AppComponent implements OnInit {
   title = 'Angular Application';
   loading = false;
   products$: Observable<IProduct[]>;
+
+  query: string = '';
   
   constructor(private productsService: ProductService) {
 
