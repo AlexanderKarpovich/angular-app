@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { fetchProducts } from './data/fetchProducts';
+import { IProduct } from './models/product';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'angular-app';
+  title = 'Angular Application';
+
+  products: IProduct[] = fetchProducts();
 }
