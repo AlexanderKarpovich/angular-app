@@ -7,7 +7,7 @@ import { IProduct } from './../../models/product';
 })
 
 export class ProductComponent {
-    @Input() product: IProduct | null
+    @Input() product: IProduct | null;
 
     areDetailsShown: boolean = false;
 }

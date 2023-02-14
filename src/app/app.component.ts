@@ -1,14 +1,23 @@
-import { Component } from '@angular/core';
-import { fetchProducts } from './data/fetchProducts';
+import { Component, OnInit } from '@angular/core';
 import { IProduct } from './models/product';
+import { ProductService } from './services/products.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'Angular Application';
+  products: IProduct[] = [];
+  
+  constructor(private productsService: ProductService) {
 
-  products: IProduct[] = fetchProducts();
+  }
+  
+  ngOnInit(): void {
+    this.productsService.getAll().subscribe(products => {
+      this.products = products;
+    });
+  }
 }
