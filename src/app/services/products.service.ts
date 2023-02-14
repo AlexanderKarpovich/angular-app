@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
-import { Observable, catchError, retry, throwError } from 'rxjs';
+import { Observable, catchError, retry, throwError, tap } from 'rxjs';
 import { IProduct } from '../models/product';
 import { ErrorService } from './error.service';
 
@@ -9,9 +9,18 @@ import { ErrorService } from './error.service';
 })
 
 export class ProductService {
+    products: IProduct[] = [];
+
     constructor(
         private http: HttpClient,
         private errorService: ErrorService) { }
+
+
+    post(product: IProduct): Observable<IProduct> {
+        return this.http.post<IProduct>('https://fakestoreapi.com/products', product).pipe(
+            tap(product => this.products.push(product))
+        );
+    }
 
     getAll(count: number = 0): Observable<IProduct[]> {
         return this.http.get<IProduct[]>('https://fakestoreapi.com/products', {
@@ -20,6 +29,7 @@ export class ProductService {
             })
         }).pipe(
             retry(5),
+            tap(products => this.products = products),
             catchError(this.errorHandler)
         );
     }
