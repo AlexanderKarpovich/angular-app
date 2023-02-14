@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IProduct } from '../models/product';
 
@@ -12,7 +12,11 @@ export class ProductService {
 
     }
 
-    getAll(): Observable<IProduct[]> {
-        return this.http.get<IProduct[]>('https://fakestoreapi.com/products');
+    getAll(count: number = 0): Observable<IProduct[]> {
+        return this.http.get<IProduct[]>('https://fakestoreapi.com/products', {
+            params: new HttpParams({
+                fromObject: { limit: count }
+            })
+        });
     }
 }
