@@ -17,4 +17,14 @@
             [product]="product"
             ></app-product>
     </div>
+    
+    <button 
+        class=" bg-yellow-400 text-black fixed rounded-full right-2 bottom-2 text-lg py-2 px-4"
+        (click)="modalService.open()">
+        +
+    </button>
+
+    <app-modal *ngIf="modalService.isVisible$ | async">
+        
+    </app-modal>
 </div>
