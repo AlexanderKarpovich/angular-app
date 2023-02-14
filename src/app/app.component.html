@@ -11,9 +11,9 @@
 
     <p *ngIf="loading" class="text-center text-lg">Loading...</p>
 
-    <div *ngIf="products$ | async as products">
+    <div *ngIf="productsService.products">
         <app-product 
-            *ngFor="let product of products | filterProducts: query" 
+            *ngFor="let product of productsService.products | filterProducts: query" 
             [product]="product"
             ></app-product>
     </div>
@@ -25,6 +25,6 @@
     </button>
 
     <app-modal *ngIf="modalService.isVisible$ | async">
-        
+        <app-create-product></app-create-product>
     </app-modal>
 </div>

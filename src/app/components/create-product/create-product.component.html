@@ -1,0 +1,151 @@
+<form [formGroup]="productForm" (ngSubmit)="submit()" class="w-[50vw]">
+    <h1 class="text-lg font-bold mb-2 text-center">Create new product</h1>
+    
+    <div class="mb-2">
+        <label class="text-sm">Title</label>
+        <input
+            type="text"
+            class="border-2 border-gray-400 rounded w-full py-2 px-4"
+            placeholder="Title"
+            formControlName="title"
+            appFocus
+        >
+        <span 
+            class="text-red-600 text-sm mb-2"
+            *ngIf="title.errors?.minlength"
+        >
+            Product title should contain at least 10 characters
+        </span>
+        <span 
+            class="text-red-600 text-sm mb-2"
+            *ngIf="title.errors?.required"
+        >
+            Title is required for product
+        </span>
+    </div>
+
+    <div class="mb-2">
+        <label class="text-sm">Price</label>
+        <input 
+            type="number"
+            min="1"
+            max="10000"
+            class="border-2 border-gray-400 rounded w-full py-2 px-4"
+            placeholder="0.00"
+            formControlName="price"
+        >
+        <span 
+            class="text-red-600 text-sm mb-2"
+            *ngIf="price.errors?.min || price.errors?.max"
+        >
+            Price should be greater than or equal to 1 and less than 10000
+        </span>
+        <span 
+            class="text-red-600 text-sm mb-2"
+            *ngIf="price.errors?.required"
+        >
+            Price is required
+        </span>
+    </div>
+
+    <div class="mb-2">
+        <label class="text-sm">Description</label>
+        <input
+            type="text"
+            class="border-2 border-gray-400 rounded w-full py-2 px-4"
+            placeholder="Description"
+            formControlName="description"
+        >
+        <span 
+            class="text-red-600 text-sm mb-2"
+            *ngIf="description.errors?.minlength"
+        >
+            Product description should contain at least 20 characters
+        </span>
+        <span 
+            class="text-red-600 text-sm mb-2"
+            *ngIf="description.errors?.required"
+        >
+            Description is required
+        </span>
+    </div>
+
+    <div class="mb-2">
+        <label class="text-sm">Category</label>
+        <input
+            type="text"
+            class="border-2 border-gray-400 rounded w-full py-2 px-4"
+            placeholder="Category"
+            formControlName="category"
+        >
+        <span 
+            class="text-red-600 text-sm mb-2"
+            *ngIf="category.errors?.minlength"
+        >
+            Product category should contain at least 10 characters
+        </span>
+        <span 
+            class="text-red-600 text-sm mb-2"
+            *ngIf="category.errors?.required"
+        >
+            Category is required
+        </span>
+    </div>
+    
+    <div class="mb-2">
+        <label class="text-sm">Rate</label>
+        <input 
+            type="number"
+            min="1"
+            max="5"
+            class="border-2 border-gray-400 rounded w-full py-2 px-4"
+            placeholder="0.00"
+            formControlName="rate"
+        >
+        <span 
+            class="text-red-600 text-sm mb-2"
+            *ngIf="rate.errors?.min || rate.errors?.max"
+        >
+            Rate should be greater than or equal to 1 and less than or equal to 5
+        </span>
+        <span 
+            class="text-red-600 text-sm mb-2"
+            *ngIf="rate.errors?.required"
+        >
+            Rate is required
+        </span>
+    </div>
+
+    <div class="mb-6">
+        <label class="text-sm">Count of rates</label>
+        <input 
+            type="number"
+            min="1"
+            max="1000"
+            class="border-2 border-gray-400 rounded w-full py-2 px-4"
+            placeholder="0.00"
+            formControlName="count"
+        >
+        <span 
+            class="text-red-600 text-sm mb-2"
+            *ngIf="count.errors?.min || count.errors?.max"
+        >
+            Count should be greater than or equal to 1 and less than 1000
+        </span>
+        <span 
+            class="text-red-600 text-sm mb-2"
+            *ngIf="count.errors?.required"
+        >
+            Count is required
+        </span>
+    </div>
+
+    <div class="flex flex-col mt-1 items-end">
+        <button 
+            type="submit"
+            class="py-2 px-4 bg-green-600 text-white w-auto">
+            Create
+        </button>
+    </div>
+
+</form>

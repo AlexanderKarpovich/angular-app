@@ -17,15 +17,15 @@ export class AppComponent implements OnInit {
   query: string = '';
   
   constructor(
-    private productsService: ProductService,
+    public productsService: ProductService,
     public modalService: ModalService) {
 
   }
   
   ngOnInit(): void {
     this.loading = true;
-    this.products$ = this.productsService.getAll(5).pipe(
-      tap(() => this.loading = false)
-    );
+    this.productsService.getAll(5).subscribe(() => {
+      this.loading = false
+    });
   }
 }
