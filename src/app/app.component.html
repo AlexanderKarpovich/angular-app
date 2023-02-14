@@ -1,30 +1,7 @@
 <app-global-error></app-global-error>
 
+<app-navigation-bar></app-navigation-bar>
+
 <div class="max-w-2xl container mx-auto pt-5">
-    <h1 class="font-bold mb-2 text-center text-lg">{{ title | titlecase }}</h1>
-
-    <input 
-        type="text" 
-        class="mb-2 border-2 border-yellow-400 py-2 px-4 w-full" 
-        placeholder="Search products..."
-        [(ngModel)]="query">
-
-    <p *ngIf="loading" class="text-center text-lg">Loading...</p>
-
-    <div *ngIf="productsService.products">
-        <app-product 
-            *ngFor="let product of productsService.products | filterProducts: query" 
-            [product]="product"
-            ></app-product>
-    </div>
-    
-    <button 
-        class=" bg-yellow-400 text-black fixed rounded-full right-2 bottom-2 text-lg py-2 px-4"
-        (click)="modalService.open()">
-        +
-    </button>
-
-    <app-modal *ngIf="modalService.isVisible$ | async">
-        <app-create-product></app-create-product>
-    </app-modal>
+    <router-outlet></router-outlet>
 </div>
